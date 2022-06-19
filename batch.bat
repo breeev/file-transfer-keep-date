@@ -8,14 +8,12 @@ setlocal
 set "psCommand="(new-object -COM 'Shell.Application')^
 .BrowseForFolder(0,'Dossier contenant tes musiques',0,0).self.path""
 
-for /f "usebackq delims=" %%I in (`powershell %psCommand%`) do set "src=%%I"
+for /f "usebackq delims=" %%I in (`powershell %psCommand%`) do set src=%%I
 
 set "psCommand="(new-object -COM 'Shell.Application')^
 .BrowseForFolder(0,'Dossier de destination',0,0).self.path""
 
-for /f "usebackq delims=" %%I in (`powershell %psCommand%`) do set "dst=%%I"
+for /f "usebackq delims=" %%I in (`powershell %psCommand%`) do set dst=%%I
 
-setlocal enabledelayedexpansion
-:: echo Copying from !src! to !dst!
-robocopy !src! !dst! *.* /xx /njh
+robocopy "%src%" "%dst%" *.* /xx /njh
 endlocal
