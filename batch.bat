@@ -1,6 +1,6 @@
-:: fchooser.bat
-:: launches a folder chooser and outputs choice to the console
-:: https://stackoverflow.com/a/15885133/1683264
+:: script de Breval
+:: déplace ta musique où tu le souhaites
+:: script utilisé : https://stackoverflow.com/a/15885133/1683264
 
 @echo off
 setlocal
@@ -15,5 +15,5 @@ set "psCommand="(new-object -COM 'Shell.Application')^
 
 for /f "usebackq delims=" %%I in (`powershell %psCommand%`) do set dst=%%I
 
-robocopy "%src%" "%dst%" *.* /xx /njh
+robocopy "%src%" "%dst%" *.mp3 /z /njh /copy:DT /dcopy:D /r /w:5
 endlocal
